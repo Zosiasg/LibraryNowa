@@ -9,8 +9,8 @@ using zaliczenie_.net.Models;
 namespace zaliczenie_.net.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20230207154324_Initial")]
-    partial class Initial
+    [Migration("20230213141103_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,8 +33,8 @@ namespace zaliczenie_.net.Migrations
                     b.Property<string>("Section")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("Tittle")
                         .HasColumnType("nvarchar(max)");

@@ -11,6 +11,12 @@ namespace zaliczenie_.net.Models
         public string Tittle { get; set; }
         public string Author { get; set; }
         public string Section { get; set; }
-        public string Status { get; set; }
+        public Status Status { get; set; }
     }
+    public enum Status
+    {
+        Available,
+        Unavaiable
+    }
+    
 }

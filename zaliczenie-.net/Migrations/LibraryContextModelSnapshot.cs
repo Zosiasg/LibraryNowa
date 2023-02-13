@@ -31,8 +31,8 @@ namespace zaliczenie_.net.Migrations
                     b.Property<string>("Section")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("Tittle")
                         .HasColumnType("nvarchar(max)");
