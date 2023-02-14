@@ -16,7 +16,7 @@ namespace zaliczenie_.net.Models
     public enum Status
     {
         Available,
-        Unavaiable
+        Unavailable
     }
     
 }
