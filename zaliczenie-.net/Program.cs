@@ -22,9 +22,7 @@ namespace zaliczenie_.net
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-        void AddAuthorizationPolicies()
-        {
-           
-        }
+          
+        
     }
 }
