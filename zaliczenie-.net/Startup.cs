@@ -25,7 +25,10 @@ namespace zaliczenie_.net
         {
             services.AddDbContext<LibraryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<UserContext>(options => options.UseSqlServer(Configuration.GetConnectionString("UserConnection")));
-            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<UserContext>();
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<UserContext>();
+                
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -58,5 +61,8 @@ namespace zaliczenie_.net
                 endpoints.MapRazorPages();
             });
         }
+       
+
+        
     }
 }
