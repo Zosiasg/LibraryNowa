@@ -51,6 +51,7 @@ namespace zaliczenie_.net.Controllers
         // POST: Libraries/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("idBook,Tittle,Author,Section,Status")] Library library)
@@ -83,6 +84,7 @@ namespace zaliczenie_.net.Controllers
         // POST: Libraries/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("idBook,Tittle,Author,Section,Status")] Library library)
