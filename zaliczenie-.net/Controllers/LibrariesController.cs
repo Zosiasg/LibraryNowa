@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using zaliczenie_.net.Models;
+
 
 namespace zaliczenie_.net.Controllers
 {
@@ -25,6 +27,7 @@ namespace zaliczenie_.net.Controllers
         }
 
         // GET: Libraries/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,6 +46,7 @@ namespace zaliczenie_.net.Controllers
         }
 
         // GET: Libraries/Create
+        [Authorize(Roles = "Librarian")]
         public IActionResult Create()
         {
             return View();
@@ -65,6 +69,8 @@ namespace zaliczenie_.net.Controllers
             return View(library);
         }
 
+        [Authorize(Roles = "Librarian")]
+
         // GET: Libraries/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -84,9 +90,10 @@ namespace zaliczenie_.net.Controllers
         // POST: Libraries/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-
+        [Authorize(Roles = "Librarian")]
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Edit(int id, [Bind("idBook,Tittle,Author,Section,Status")] Library library)
         {
             if (id != library.idBook)
@@ -118,6 +125,7 @@ namespace zaliczenie_.net.Controllers
         }
 
         // GET: Libraries/Delete/5
+        [Authorize(Roles = "Librarian")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -136,6 +144,7 @@ namespace zaliczenie_.net.Controllers
         }
 
         // POST: Libraries/Delete/5
+        [Authorize(Roles = "Librarian")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
