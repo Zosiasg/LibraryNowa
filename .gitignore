@@ -361,3 +361,11 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/zaliczenie-.net/appsettings.json
+/zaliczenie-.net/Migrations/20230215112153_Books.Designer.cs
+/zaliczenie-.net/Migrations/20230213141103_init.cs
+/zaliczenie-.net/Migrations/20230213141103_init.Designer.cs
+/zaliczenie-.net/appsettings.json
+/zaliczenie-.net/appsettings.json
+/zaliczenie-.net/Migrations/20230213141103_init.cs
+/zaliczenie-.net/Migrations/20230213141103_init.Designer.cs
