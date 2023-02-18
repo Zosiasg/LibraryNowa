@@ -99,9 +99,9 @@ namespace zaliczenie_.net.Areas.Identity.Pages.Account
                         claims.Add(new Claim("Roles", roleClaim));
                     }
 
-                   // await _signInManager.SignInWithClaimsAsync(user, Input.RememberMe, new Claim[] {new Claim("amr", "pwd")});
-                    //_logger.LogInformation("User logged in.");
-                   // return LocalRedirect(returnUrl);
+                    await _signInManager.SignInWithClaimsAsync(user, Input.RememberMe, new Claim[] {new Claim("amr", "pwd")});
+                   _logger.LogInformation("User logged in.");
+                    return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
