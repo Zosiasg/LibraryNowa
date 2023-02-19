@@ -154,20 +154,22 @@ namespace zaliczenie_.net.Controllers
             return _context.Books.Any(e => e.idBook == id);
         }
 
-        public async Task<IActionResult> Search(int id)
+        public async Task<IActionResult> Search(string searchString)
         {
-
             if (_context.Books == null)
             {
                 return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
             }
 
-            var searchedBooks = from m in _context.Books
-                                select m;
+            var books = from m in _context.Books
+                         select m;
 
-            searchedBooks = searchedBooks.Where(s => s.idBook==id);
-            
-            return View(await searchedBooks.ToListAsync());
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(s => s.Tittle!.Contains(searchString));
+            }
+
+            return View(await books.ToListAsync());
         }
 
     }
