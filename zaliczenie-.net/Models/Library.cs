@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace zaliczenie_.net.Models
 {
     public class Library
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idBook { get; set; }
         [Required]
         [MaxLength(30)]

@@ -70,14 +70,11 @@ namespace zaliczenie_.net.Controllers
         [Authorize(Roles = "Librarian")]
 
         // GET: Libraries/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+          
 
-            var library = await _context.Books.FindAsync(id);
+            var library = await _context.Books.FirstOrDefaultAsync(book => book.idBook == id);
             if (library == null)
             {
                 return NotFound();
@@ -92,18 +89,18 @@ namespace zaliczenie_.net.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public async Task<IActionResult> Edit(int id, [Bind("idBook,Tittle,Author,Section,Status")] Library library)
-        {
-            if (id != library.idBook)
-            {
-                return NotFound();
-            }
-
+        public async Task<IActionResult> Edit(int id, [Bind("Tittle,Author,Section,Status")] Library library)
+        {      
+            var existingBook = await _context.Books.FirstOrDefaultAsync(book => book.idBook == id);
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(library);
+                    existingBook.Tittle = library.Tittle;
+                    existingBook.Author = library.Author;
+                    existingBook.Section = library.Section;
+                    existingBook.Status = library.Status;
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -131,8 +128,7 @@ namespace zaliczenie_.net.Controllers
                 return NotFound();
             }
 
-            var library = await _context.Books
-                .FirstOrDefaultAsync(m => m.idBook == id);
+            var library = await _context.Books.FirstOrDefaultAsync(book => book.idBook == id);
             if (library == null)
             {
                 return NotFound();
@@ -147,7 +143,7 @@ namespace zaliczenie_.net.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var library = await _context.Books.FindAsync(id);
+            var library = await _context.Books.FirstOrDefaultAsync(book => book.idBook == id);
             _context.Books.Remove(library);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -157,6 +153,22 @@ namespace zaliczenie_.net.Controllers
         {
             return _context.Books.Any(e => e.idBook == id);
         }
-        
+
+        public async Task<IActionResult> Search(int id)
+        {
+
+            if (_context.Books == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            }
+
+            var searchedBooks = from m in _context.Books
+                                select m;
+
+            searchedBooks = searchedBooks.Where(s => s.idBook==id);
+            
+            return View(await searchedBooks.ToListAsync());
+        }
+
     }
 }
