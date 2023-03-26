@@ -10,4 +10,10 @@ established roles for specific users that enable them to edit the database,
 basic validation.
 
 Tools used in project:
-Nuget,
+Nuget, 
+Microsoft.EntityFrameworkCore.Tools, 
+Microsoft.EntityFrameworkCore.Tools, 
+Microsoft.AspNetCore.Identity.EntityFrameworkCore,
+Microsoft SQL Server Managment Studio,
+.NET core 3.1
+
