@@ -17,7 +17,7 @@ namespace zaliczenie_.net.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Library>().HasKey(e => e.idBook);
-            modelBuilder.Entity<Library>().HasKey(e => e.Tittle);
+            //modelBuilder.Entity<Library>().HasKey(e => e.Tittle);
             modelBuilder.Entity<Library>().ToTable("Books", "dbo");
         }
     }
