@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations.Internal;
@@ -7,13 +8,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+//using System.Web.Http.Cors;
 using zaliczenie_.net.Migrations;
 using zaliczenie_.net.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace zaliczenie_.net.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
+    [EnableCors("AllowOrigin")]
+
     public class BooksController : ControllerBase
     {
         private readonly LibraryContext _dbContext;
