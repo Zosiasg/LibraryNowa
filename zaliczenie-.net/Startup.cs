@@ -31,7 +31,7 @@ namespace zaliczenie_.net
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddCors(options =>
-            options.AddPolicy(name: "AllowOrigin", builder =>
+            options.AddPolicy(name: "AllowAll", builder =>
                 builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
         }
 

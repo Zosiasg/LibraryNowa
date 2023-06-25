@@ -18,7 +18,7 @@ namespace zaliczenie_.net.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [AllowAnonymous]
-    [EnableCors("AllowOrigin")]
+    [EnableCors("AllowAll")]
 
     public class BooksController : ControllerBase
     {
