@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+//using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations.Internal;
-using System;
-using System.Collections;
+//using Microsoft.EntityFrameworkCore.Migrations.Internal;
+//using System;
+//using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 //using System.Web.Http.Cors;
-using zaliczenie_.net.Migrations;
+//using zaliczenie_.net.Migrations;
 using zaliczenie_.net.Models;
 using Microsoft.AspNetCore.Cors;
 
@@ -37,9 +37,9 @@ namespace zaliczenie_.net.Controllers
             }
             return await _dbContext.Books.ToListAsync();
         }
+
         //GET:api/books/5
         [HttpGet("{id}")]
-
         public async Task<ActionResult<Library>> GetBookById(int id)
         {
             if (_dbContext.Books == null)
@@ -55,16 +55,8 @@ namespace zaliczenie_.net.Controllers
         }
 
         //POST:api/books
-        //[HttpPost]
-
-        //public async Task<ActionResult<Library>> PostBook(Library library)
-        //{
-        //_dbContext.Books.Add(library);
-        // await _dbContext.SaveChangesAsync();
-        // return CreatedAtAction(nameof(GetBookById), new { id = library.idBook }, library);
-        //}
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("idBook,Tittle,Author,Section,Status")] Library library)
+        public async Task<IActionResult> Create([Bind("Tittle,Author,Section,Status")] Library library)
         {
             if (ModelState.IsValid)
             {
@@ -74,6 +66,7 @@ namespace zaliczenie_.net.Controllers
             }
             return (IActionResult)library;
         }
+
         //DELETE: api/books/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBook(int id)
@@ -90,7 +83,7 @@ namespace zaliczenie_.net.Controllers
             _dbContext.Books.Remove(book);
             await _dbContext.SaveChangesAsync();
 
-            return Ok("Książka została pomyślnie usunięta.");
+            return Ok();
         }
         // PUT: api/books/5
         [HttpPut("{id}")]
@@ -128,14 +121,12 @@ namespace zaliczenie_.net.Controllers
                 }
             }
 
-            return Ok("Książka została pomyślnie zaktualizowana.");
+            return Ok();
         }
 
         private bool BookExists(int id)
         {
             return _dbContext.Books.Any(b => b.idBook == id);
         }
-
-
     }
 }
